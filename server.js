@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
   password: "tyler",
   database: "employee_db",
 });
-// connects to sql server and sql database
+// connects to sql server and sql DB
 connection.connect(function (err) {
   if (err) throw err;
   options();
@@ -67,7 +67,7 @@ function options() {
     });
 }
 
-// View employees in Database
+// View employees in DB
 
 function viewEmployees() {
   var query = "SELECT * FROM employee";
@@ -78,7 +78,7 @@ function viewEmployees() {
     options();
   });
 }
-// view all departments in the database
+// View all departments in DB
 function viewDepartments() {
   var query = "SELECT * FROM department";
   connection.query(query, function (err, res) {
@@ -88,7 +88,7 @@ function viewDepartments() {
   });
 }
 
-// view all roles in the database
+// View all roles in DB
 function viewRoles() {
   var query = "SELECT * FROM role";
   connection.query(query, function (err, res) {
@@ -98,7 +98,7 @@ function viewRoles() {
   });
 }
 
-// add an employee to the database
+// Add employee to DB
 function addEmployee() {
   connection.query("SELECT * FROM role", function (err, res) {
     if (err) throw err;
@@ -158,7 +158,7 @@ function addEmployee() {
   });
 }
 
-// add a department to the database
+// Add a department in DB
 function addDepartment() {
   inquirer
     .prompt([
@@ -182,7 +182,7 @@ function addDepartment() {
     });
 }
 
-// add a role to the database
+// Add a role in DB
 function addRole() {
   connection.query("SELECT * FROM department", function (err, res) {
     if (err) throw err;
@@ -237,13 +237,13 @@ function addRole() {
   });
 }
 
-// update a role in the database
+// Update role in DB
 function updateRole() {}
 
-//  delete an employee
+//  Delete Employee
 function deleteEmployee() {}
 
-// exit the app
+// Exit
 function exitApp() {
   connection.end();
 }
