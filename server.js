@@ -1,13 +1,8 @@
-const inquirer = require('inquirer')
+const inquirer = require("inquirer");
 const mysql = require("mysql2");
 const consoleTable = require("console.table");
+const connection = require('./config/connection');
 
-const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "tyler",
-  database: "employee_db",
-});
 // connects to sql server and sql DB
 connection.connect(function (err) {
   if (err) throw err;
@@ -27,9 +22,7 @@ function options() {
         "Add an employee",
         "Add a department",
         "Add a role",
-        "Update employee role",
-        "Delete an employee",
-        "EXIT",
+        "Exit Employee Tracker",
       ],
     })
     .then(function (answer) {
@@ -52,12 +45,6 @@ function options() {
         case "Add a role":
           addRole();
           break;
-        case "Update employee role":
-          updateRole();
-          break;
-        case "Delete an employee":
-          deleteEmployee();
-          break;
         case "EXIT":
           exitApp();
           break;
@@ -67,28 +54,27 @@ function options() {
     });
 }
 
-// View employees in DB
-
+// This function will let you view all employees in the database
 function viewEmployees() {
   var query = "SELECT * FROM employee";
   connection.query(query, function (err, res) {
     if (err) throw err;
-    console.log(res.length + " employees found!");
-    console.table("All Employees:", res);
+    console.log(res.length + " employees in the database!");
+    console.table("Employees:", res);
     options();
   });
 }
-// View all departments in DB
+// This function will let you view all departments in the database
 function viewDepartments() {
   var query = "SELECT * FROM department";
   connection.query(query, function (err, res) {
     if (err) throw err;
-    console.table("All Departments:", res);
+    console.table("Departments:", res);
     options();
   });
 }
 
-// View all roles in DB
+// this function allows you to view all roles in the database
 function viewRoles() {
   var query = "SELECT * FROM role";
   connection.query(query, function (err, res) {
@@ -98,7 +84,7 @@ function viewRoles() {
   });
 }
 
-// Add employee to DB
+// This function will add an employee to the database
 function addEmployee() {
   connection.query("SELECT * FROM role", function (err, res) {
     if (err) throw err;
@@ -107,17 +93,17 @@ function addEmployee() {
         {
           name: "first_name",
           type: "input",
-          message: "What is the employee's fist name? ",
+          message: "What is the employee's fist name?",
         },
         {
           name: "last_name",
           type: "input",
-          message: "What is the employee's last name? ",
+          message: "What is the employee's last name?",
         },
         {
           name: "manager_id",
           type: "input",
-          message: "What is the employee's manager's ID? ",
+          message: "What is the employee's manager's ID?",
         },
         {
           name: "role",
@@ -134,9 +120,9 @@ function addEmployee() {
       ])
       .then(function (answer) {
         let role_id;
-        for (let a = 0; a < res.length; a++) {
-          if (res[a].title == answer.role) {
-            role_id = res[a].id;
+        for (let i = 0; i < res.length; i++) {
+          if (res[i].title == answer.role) {
+            role_id = res[i].id;
             console.log(role_id);
           }
         }
@@ -158,14 +144,14 @@ function addEmployee() {
   });
 }
 
-// Add a department in DB
+// This function will add a department in the database
 function addDepartment() {
   inquirer
     .prompt([
       {
         name: "newDepartment",
         type: "input",
-        message: "Which department would you like to add?",
+        message: "What department would you like to add?",
       },
     ])
     .then(function (answer) {
@@ -181,12 +167,10 @@ function addDepartment() {
       });
     });
 }
-
-// Add a role in DB
+// This function will let you add a role into the database.
 function addRole() {
   connection.query("SELECT * FROM department", function (err, res) {
     if (err) throw err;
-
     inquirer
       .prompt([
         {
@@ -203,11 +187,11 @@ function addRole() {
           name: "Department",
           type: "list",
           choices: function () {
-            var deptArry = [];
+            var depArr = [];
             for (let i = 0; i < res.length; i++) {
-              deptArry.push(res[i].name);
+              depArr.push(res[i].name);
             }
-            return deptArry;
+            return depArr;
           },
         },
       ])
@@ -237,13 +221,7 @@ function addRole() {
   });
 }
 
-// Update role in DB
-function updateRole() {}
-
-//  Delete Employee
-function deleteEmployee() {}
-
-// Exit
+// Exit the Employee Tracker
 function exitApp() {
   connection.end();
 }

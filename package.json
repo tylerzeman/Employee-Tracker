@@ -22,5 +22,6 @@
   "bugs": {
     "url": "https://github.com/tylerzeman/Employee-Tracker/issues"
   },
-  "homepage": "https://github.com/tylerzeman/Employee-Tracker#readme"
+  "homepage": "https://github.com/tylerzeman/Employee-Tracker#readme",
+  "devDependencies": {}
 }
