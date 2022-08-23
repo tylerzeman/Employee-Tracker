@@ -23,6 +23,6 @@ terminal.
 
 ## Demo
 
-![screenshot.png](Assets/employeedb.png?raw=true "Screenshot.png")
+![screenshot.png](Assets/screemshot.png?raw=true "Screenshot.png")
 
 https://user-images.githubusercontent.com/107427546/186052886-1fe3e645-e6c1-4a58-9a56-c7ca4eff88bc.mp4
