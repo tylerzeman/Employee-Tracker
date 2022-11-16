@@ -9,6 +9,8 @@
 
 -- [Demo](#Demo)
 
+-- [Features](#Features)
+
 
 ## Description 
 
