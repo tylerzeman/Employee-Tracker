@@ -18,8 +18,11 @@ In this app, the user builds an employee database by adding employees, adding ro
 ## Installation
 
 The user will have to download node and mysql. Other technologies used were Inquirer, mysql2, console.table, these can be download by running the npm i command in the
-
 terminal.
+
+## Features
+
+This app allows you to create a mysql database that can track/add employees for a department. It also allows you to add roles to said employess and also track their salaries.
 
 ## Demo
 
